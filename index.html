@@ -1,179 +1,131 @@
 <!DOCTYPE html>
 <html>
-<head>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-   <title>Carbon - A simple PHP API extension for DateTime.</title>
-   <meta name="description" content="Carbon - A simple PHP API extension for DateTime.">
-   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow-night.min.css">
-   <link href="/carbon.css" rel="stylesheet">
-   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-27020320-3', 'auto');
-    ga('send', 'pageview');
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Carbon : A simple PHP API extension for DateTime.">
 
-  </script>
-</head>
-<body data-spy="scroll" data-target="#affix-nav">
-   <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><img src="/logo.png" alt="Carbon" width="159" height="50"></a>
-         </div>
-         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-               <li><a href="/#gettingstarted">Getting Started</a></li>
-               <li><a href="/docs">Docs</a></li>
-               <li><a href="/history">History</a></li>
-               <li><a href="/contribute">Contribute</a></li>
-               <li><a href="//github.com/briannesbitt/carbon">Github</a></li>
-            </ul>
-         </div>
-      </div>
-   </nav>
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-   <div class="jumbotron">
-   <div class="container">
-      <h1>A simple PHP API extension for DateTime.</h1>
-      <pre><code class="php">printf("Right now is %s", Carbon::now()->toDateTimeString());
-printf("Right now in Vancouver is %s", Carbon::now('America/Vancouver'));  //implicit __toString()
-$tomorrow = Carbon::now()->addDay();
-$lastWeek = Carbon::now()->subWeek();
-$nextSummerOlympics = Carbon::createFromDate(2012)->addYears(4);
+    <title>Carbon</title>
+  </head>
 
-$officialDate = Carbon::now()->toRfc2822String();
+  <body>
 
-$howOldAmI = Carbon::createFromDate(1975, 5, 21)->age;
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/jonsonlion/Carbon">View on GitHub</a>
 
-$noonTodayLondonTime = Carbon::createFromTime(12, 0, 0, 'Europe/London');
+          <h1 id="project_title">Carbon</h1>
+          <h2 id="project_tagline">A simple PHP API extension for DateTime.</h2>
 
-$worldWillEnd = Carbon::createFromDate(2012, 12, 21, 'GMT');
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/jonsonlion/Carbon/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/jonsonlion/Carbon/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-// Don't really want to die so mock now
-Carbon::setTestNow(Carbon::createFromDate(2000, 1, 1));
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="carbon" class="anchor" href="#carbon" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Carbon</h1>
 
-// comparisons are always done in UTC
-if (Carbon::now()->gte($worldWillEnd)) {
-    die();
-}
+<p><a href="https://packagist.org/packages/nesbot/carbon"><img src="https://poser.pugx.org/nesbot/carbon/v/stable.png" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/nesbot/carbon"><img src="https://poser.pugx.org/nesbot/carbon/downloads.png" alt="Total Downloads"></a>
+<a href="https://travis-ci.org/briannesbitt/Carbon"><img src="https://travis-ci.org/briannesbitt/Carbon.svg?branch=master" alt="Build Status"></a>
+<a href="https://styleci.io/repos/5724990"><img src="https://styleci.io/repos/5724990/shield?style=flat" alt="StyleCI"></a>
+<a href="https://codecov.io/github/briannesbitt/Carbon?branch=master"><img src="https://codecov.io/github/briannesbitt/Carbon/coverage.svg?branch=master" alt="codecov.io"></a></p>
 
-// Phew! Return to normal behaviour
-Carbon::setTestNow();
+<p>A simple PHP API extension for DateTime. <a href="http://carbon.nesbot.com">http://carbon.nesbot.com</a></p>
 
-if (Carbon::now()->isWeekend()) {
-    echo 'Party!';
-}
-echo Carbon::now()->subMinutes(2)->diffForHumans(); // '2 minutes ago'
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Carbon\Carbon</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">printf</span>(<span class="pl-s"><span class="pl-pds">"</span>Right now is %s<span class="pl-pds">"</span></span>, <span class="pl-c1">Carbon</span><span class="pl-k">::</span>now()<span class="pl-k">-&gt;</span>toDateTimeString());</span>
+<span class="pl-s1"><span class="pl-c1">printf</span>(<span class="pl-s"><span class="pl-pds">"</span>Right now in Vancouver is %s<span class="pl-pds">"</span></span>, <span class="pl-c1">Carbon</span><span class="pl-k">::</span>now(<span class="pl-s"><span class="pl-pds">'</span>America/Vancouver<span class="pl-pds">'</span></span>));  <span class="pl-c">//implicit __toString()</span></span>
+<span class="pl-s1"><span class="pl-smi">$tomorrow</span> <span class="pl-k">=</span> <span class="pl-c1">Carbon</span><span class="pl-k">::</span>now()<span class="pl-k">-&gt;</span>addDay();</span>
+<span class="pl-s1"><span class="pl-smi">$lastWeek</span> <span class="pl-k">=</span> <span class="pl-c1">Carbon</span><span class="pl-k">::</span>now()<span class="pl-k">-&gt;</span>subWeek();</span>
+<span class="pl-s1"><span class="pl-smi">$nextSummerOlympics</span> <span class="pl-k">=</span> <span class="pl-c1">Carbon</span><span class="pl-k">::</span>createFromDate(<span class="pl-c1">2012</span>)<span class="pl-k">-&gt;</span>addYears(<span class="pl-c1">4</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$officialDate</span> <span class="pl-k">=</span> <span class="pl-c1">Carbon</span><span class="pl-k">::</span>now()<span class="pl-k">-&gt;</span>toRfc2822String();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$howOldAmI</span> <span class="pl-k">=</span> <span class="pl-c1">Carbon</span><span class="pl-k">::</span>createFromDate(<span class="pl-c1">1975</span>, <span class="pl-c1">5</span>, <span class="pl-c1">21</span>)<span class="pl-k">-&gt;</span><span class="pl-smi">age</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$noonTodayLondonTime</span> <span class="pl-k">=</span> <span class="pl-c1">Carbon</span><span class="pl-k">::</span>createFromTime(<span class="pl-c1">12</span>, <span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-s"><span class="pl-pds">'</span>Europe/London<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$worldWillEnd</span> <span class="pl-k">=</span> <span class="pl-c1">Carbon</span><span class="pl-k">::</span>createFromDate(<span class="pl-c1">2012</span>, <span class="pl-c1">12</span>, <span class="pl-c1">21</span>, <span class="pl-s"><span class="pl-pds">'</span>GMT<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Don't really want to die so mock now</span></span>
+<span class="pl-s1"><span class="pl-c1">Carbon</span><span class="pl-k">::</span>setTestNow(<span class="pl-c1">Carbon</span><span class="pl-k">::</span>createFromDate(<span class="pl-c1">2000</span>, <span class="pl-c1">1</span>, <span class="pl-c1">1</span>));</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// comparisons are always done in UTC</span></span>
+<span class="pl-s1"><span class="pl-k">if</span> (<span class="pl-c1">Carbon</span><span class="pl-k">::</span>now()<span class="pl-k">-&gt;</span>gte(<span class="pl-smi">$worldWillEnd</span>)) {</span>
+<span class="pl-s1">    <span class="pl-k">die</span>();</span>
+<span class="pl-s1">}</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Phew! Return to normal behaviour</span></span>
+<span class="pl-s1"><span class="pl-c1">Carbon</span><span class="pl-k">::</span>setTestNow();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">if</span> (<span class="pl-c1">Carbon</span><span class="pl-k">::</span>now()<span class="pl-k">-&gt;</span>isWeekend()) {</span>
+<span class="pl-s1">    <span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">'</span>Party!<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">}</span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-c1">Carbon</span><span class="pl-k">::</span>now()<span class="pl-k">-&gt;</span>subMinutes(<span class="pl-c1">2</span>)<span class="pl-k">-&gt;</span>diffForHumans(); <span class="pl-c">// '2 minutes ago'</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// ... but also does 'from now', 'after' and 'before'</span></span>
+<span class="pl-s1"><span class="pl-c">// rolling up to seconds, minutes, hours, days, months, years</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$daysSinceEpoch</span> <span class="pl-k">=</span> <span class="pl-c1">Carbon</span><span class="pl-k">::</span>createFromTimestamp(<span class="pl-c1">0</span>)<span class="pl-k">-&gt;</span>diffInDays();</span></pre></div>
 
-// ... but also does 'from now', 'after' and 'before'
-// rolling up to seconds, minutes, hours, days, months, years
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
-CarbonInterval::setLocale('fr');
-echo CarbonInterval::years(2)->minutes(2); // '2 ans 2 minutes'
+<h3>
+<a id="with-composer" class="anchor" href="#with-composer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>With Composer</h3>
 
-$daysSinceEpoch = Carbon::createFromTimestamp(0)->diffInDays();
+<pre><code>$ composer require nesbot/carbon
 </code></pre>
-   </div>
-</div>
 
+<div class="highlight highlight-source-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>require<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>nesbot/carbon<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>~1.14<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
 
-   <div class="container page"><div class="row"><div class="col-md-9">
-      <ul class="list-inline">
-   <li><a href="https://packagist.org/packages/nesbot/carbon"><img src="https://poser.pugx.org/nesbot/carbon/v/stable.png"></a></li>
-   <li><a href="https://packagist.org/packages/nesbot/carbon"><img src="https://poser.pugx.org/nesbot/carbon/downloads.png"></a></i>
-   <li><a href="https://travis-ci.org/briannesbitt/Carbon"><img src="https://secure.travis-ci.org/briannesbitt/Carbon.png"></a></li>
-   <li><a href="https://styleci.io/repos/5724990"><img src="https://styleci.io/repos/5724990/shield?style=flat"></a></li>
-   <li><a href="https://codecov.io/github/briannesbitt/Carbon?branch=master"><img src="https://codecov.io/github/briannesbitt/Carbon/coverage.svg?branch=master"></a></li>
-</ul>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>vendor/autoload.php<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Carbon\Carbon</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">printf</span>(<span class="pl-s"><span class="pl-pds">"</span>Now: %s<span class="pl-pds">"</span></span>, <span class="pl-c1">Carbon</span><span class="pl-k">::</span>now());</span></pre></div>
 
-<h1 id="gettingstarted">Getting Started</h1>
+<p><a name="install-nocomposer"></a></p>
 
-<p>1.x is compatible with PHP 5.3+.<br>A 2.x version is in the works and will require PHP 5.4+.</p>
+<h3>
+<a id="without-composer" class="anchor" href="#without-composer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Without Composer</h3>
 
-<h3>Installing</h3>
-<p>The easiest and recommended method to install Carbon is via <a href="http://getcomposer.org/">composer</a>.</p>
+<p>Why are you not using <a href="http://getcomposer.org/">composer</a>? Download <a href="https://github.com/briannesbitt/Carbon/blob/master/src/Carbon/Carbon.php">Carbon.php</a> from the repo and save the file into your project path somewhere.</p>
 
-<div role="tabpanel">
-   <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#withcomposer" role="tab" data-toggle="tab">With composer</a></li>
-      <li role="presentation"><a href="#nocomposer" role="tab" data-toggle="tab">Direct download</a></li>
-   </ul>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>path/to/Carbon.php<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Carbon\Carbon</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">printf</span>(<span class="pl-s"><span class="pl-pds">"</span>Now: %s<span class="pl-pds">"</span></span>, <span class="pl-c1">Carbon</span><span class="pl-k">::</span>now());</span></pre></div>
+      </section>
+    </div>
 
-   <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="withcomposer">
-         <p></p>
-         <p>Use the following command to install with composer.</p>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Carbon maintained by <a href="https://github.com/jonsonlion">jonsonlion</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
 
-         <p><pre><code>$ composer require nesbot/carbon</code></pre></p>
+    
 
-         <p>This will automatically get the latest version and configure a <code>composer.json</code> file.</p>
-
-         <p><pre><code class="php">&lt;?php
-require 'vendor/autoload.php';
-
-use Carbon\Carbon;
-
-printf("Now: %s", Carbon::now());</code></pre></p>
-
-         <p>If you wish you can create the following <code>composer.json</code> file and run <code>composer install</code> to install it.</p>
-
-         <p><pre><code class="php">{
-   "require": {
-      "nesbot/carbon": "~1.18"
-   }
-}</code></pre></p>
-
-      </div>
-      <div role="tabpanel" class="tab-pane" id="nocomposer">
-         <p></p>
-         <p>Why are you not using <a href="http://getcomposer.org/">composer</a>?</p>
-         <p>Download <a href="https://github.com/briannesbitt/Carbon/blob/master/src/Carbon/Carbon.php">Carbon.php</a> from the repo and save the file into your project path somewhere.</p>
-
-         <p><pre><code class="php">&lt;?php
-require 'path/to/Carbon.php';
-
-use Carbon\Carbon;
-
-printf("Now: %s", Carbon::now());</code></pre></p> 
-      </div>
-   </div>
-</div>
-
-<h3>Learn More</h3>
-Looks good so far.  What do I do next? Read the <a href="/docs">API docs</a>.
-
-<h2>Author</h2>
-
-<address>
-  <strong>Brian Nesbitt</strong><br>
-  <a href="http://nesbot.com">http://nesbot.com</a><br>
-  <a href="http://twitter.com/NesbittBrian">http://twitter.com/NesbittBrian</a>
-</address>
-
-<h2>License</h2>
-<p>Carbon is licensed under the MIT License - see the <code>LICENSE</code> file for details.</p>
-
-<h2>Why the name Carbon?</h2>
-<p>Read about <a href="http://en.wikipedia.org/wiki/Radiocarbon_dating">Carbon Dating</a>.</p>
-   </div></div></div>
-
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-   <script>hljs.initHighlightingOnLoad();</script>
-</body>
+  </body>
 </html>
